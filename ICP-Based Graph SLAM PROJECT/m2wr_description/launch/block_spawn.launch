@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+	
+	<param name="robot_description1" command="$(find xacro)/xacro.py '$(find m2wr_description)/urdf/green_block.xacro'"/>
+	<param name="robot_description2" command="$(find xacro)/xacro.py '$(find m2wr_description)/urdf/red_block.xacro'"/>
+	<param name="robot_description3" command="$(find xacro)/xacro.py '$(find m2wr_description)/urdf/blue_block.xacro'"/>
+
+	<arg name="x1" default="2"/>
+	<arg name="y1" default="0"/>
+	<arg name="z1" default="0.5"/>
+	<arg name="x2" default="3"/>
+	<arg name="y2" default="-3"/>
+	<arg name="z2" default="0.5"/>
+
+	<node name="green_block_spawn"  pkg="gazebo_ros" type="spawn_model" output="screen"
+	args="-urdf -param robot_description1 -model blockg -x $(arg x1) -y $(arg y1) -z $(arg z1)" />
+	<node name="red_block_spawn"  pkg="gazebo_ros" type="spawn_model" output="screen"
+	args="-urdf -param robot_description2 -model blockr -x $(arg x2) -y $(arg y2) -z $(arg z2)" />
+	<node name="blue_block_spawn"  pkg="gazebo_ros" type="spawn_model" output="screen"
+	args="-urdf -param robot_description3 -model blockb -x 2 -y -3 -z 0.5" />
+</launch>
+
